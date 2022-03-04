@@ -71,5 +71,5 @@ def merge_files(*args):
             print('Error al abrir el archivo',item)
     file_merge.close()
 
-open_files('docs/LISA.QUE','docs/LISA0.001','docs/LISA0.501','docs/LISA1.001','docs/LISA1.501','docs/LISA2.001','docs/LISA2.501','docs/LISA3.001','docs/LISA3.501','docs/LISA4.001','docs/LISA4.501','docs/LISA5.001','docs/LISA5.501','docs/LISA5.627','docs/LISA5.850')
-merge_files('docs/format-LISA0.001','docs/format-LISA0.501','docs/format-LISA1.001','docs/format-LISA1.501','docs/format-LISA2.001','docs/format-LISA2.501','docs/format-LISA3.001','docs/format-LISA3.501','docs/format-LISA4.001','docs/format-LISA4.501','docs/format-LISA5.001','docs/format-LISA5.501','docs/format-LISA5.627','docs/format-LISA5.850')
+open_files('docs/LISA.QUE','docs/LISA0.001','docs/LISA0.501','docs/LISA1.001','docs/LISA1.501','docs/LISA2.001','docs/LISA2.501','docs/LISA3.001','docs/LISA3.501','docs/LISA4.001','docs/LISA4.501','docs/LISA5.001')
+merge_files('docs/format-LISA0.001','docs/format-LISA0.501','docs/format-LISA1.001','docs/format-LISA1.501','docs/format-LISA2.001','docs/format-LISA2.501','docs/format-LISA3.001','docs/format-LISA3.501','docs/format-LISA4.001','docs/format-LISA4.501','docs/format-LISA5.001')
