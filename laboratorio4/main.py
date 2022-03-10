@@ -3,6 +3,12 @@ En este programa se obtiene el vocabulario de los documentos procesados en el la
 """
 
 def frecuencia(documento,min_frec):
+    """
+    Funcion para calcular la frecuencia apartir de un rango > de los documentos.
+    Recibe como parametros:
+    - documento (string)
+    - min_frec (int)
+    """
     dic_frecuencias = dict()
     INVALID=['0','1','2','3','4','5','6','7','8','9','',' ']
     
@@ -26,18 +32,30 @@ def frecuencia(documento,min_frec):
 
 
 def vocabulario_total(dic_documentos):
+    """
+    Funcion para calcular el vocabulario total de un conjunto de documentos.
+    Recibe como parametros:
+    - dic_documento (diccionario)
+    """
     INVALID=['0','1','2','3','4','5','6','7','8','9','',' ']
     vocabulario = list()
     print('>>>Calculando vocabulario total')
     for llave in dic_documentos:
         documento = dic_documentos[llave]
-        paragraph = documento.split(' ')
+        if type(documento) == dict:
+            for llave2 in documento:
+                if(len(llave2)>0): #Comprobamos si la palabra no es vacia
+                    if llave2 not in INVALID and llave2 not in vocabulario:
+                        vocabulario.append(llave2)
+        else:
+            paragraph = documento.split(' ')
 
-        for word in paragraph:
-            if(len(word)>0): #Comprobamos si la palabra no es vacia
-                if word[0] not in INVALID and word not in vocabulario:
-                    vocabulario.append(word)
+            for word in paragraph:
+                if(len(word)>0): #Comprobamos si la palabra no es vacia
+                    if word[0] not in INVALID and word not in vocabulario:
+                        vocabulario.append(word)
     
+    vocabulario.sort()
     #print(vocabulario)
     return vocabulario
 
@@ -52,13 +70,16 @@ def vocuabulario(dic_documentos):
         if(len(frec_vocabulario)>0):
             dic_vocabulario[llave] = frec_vocabulario
         
-    print('>>>Vocabulario')
+    print('>>>Vocabulario frecuencia')
     #print(dic_vocabulario)
     return dic_vocabulario
 
 def file_List(name,list):
     """
     Funcion para crear un archivo de texto a partir de un diccionario.
+    Recibe como parametros:
+    - name (string)
+    - list (lista)
     """
     fname = f'vocabulario total-{name}.csv'
     file = open(fname,'at')
@@ -73,6 +94,9 @@ def file_List(name,list):
 def file_dict(name,dic):
     """
     Funcion para crear un archivo de texto a partir de un diccionario.
+    Recibe como parametros:
+    - name (string)
+    - dic (diccionario)
     """
     fname = f'vocabulario-{name}.csv'
     file = open(fname,'at')
@@ -108,19 +132,19 @@ for linea in paragraph_lem:
     i+=1
 
 
+#----------VOCABULARIO TOTAL----------#
 voc_trun = vocabulario_total(dic_documentos_trunc)
 file_List('truncamiento',voc_trun)
 voc_lem = vocabulario_total(dic_documentos_lem)
 file_List('lematizacion',voc_lem)
 
+#----------VOCABULARIO CON FRECUENCIA----------#
 voc_fre5_trunc = vocuabulario(dic_documentos_trunc)
-print('salida1:',type(voc_fre5_trunc))
 file_dict('frec5_truncamiento',voc_fre5_trunc)
-#voc_frec5_trunc_words = vocabulario_total(voc_fre5_trunc)
-#file_List('truncamiento-frec5Voc',voc_frec5_trunc_words)
+voc_frec5_trunc_words = vocabulario_total(voc_fre5_trunc) #marca error porque es un dict con dict
+file_List('truncamiento-frec5Voc',voc_frec5_trunc_words)
 
 voc_fre5_lem = vocuabulario(dic_documentos_lem)
-print('salida1:',type(voc_fre5_trunc))
 file_dict('frec5_lematizacion',voc_fre5_lem)
-#voc_frec5_lem_words = vocabulario_total(voc_fre5_lem)
-#file_List('lematizacion-frec5Voc',voc_frec5_lem_words)
+voc_frec5_lem_words = vocabulario_total(voc_fre5_lem)
+file_List('lematizacion-frec5Voc',voc_frec5_lem_words)
