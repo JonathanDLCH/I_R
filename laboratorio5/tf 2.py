@@ -30,7 +30,7 @@ def tf(documento):
     
     dic_tf = dict()
     for llave in dic_frecuencias:
-        dic_tf[llave]= round(dic_frecuencias[llave]/m,4)
+        dic_tf[llave]= round(dic_frecuencias[llave],4)
         
     #print(dic_tf)
     return dic_tf
